@@ -9,6 +9,61 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: ${AUTH_SERVER_URL}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: 5671
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    ssl:
+      enabled: true
+  cloud:
+    function:
+      definition: welcomeMessage;successfulRegistrationEmail;cancelledEvent
+    stream:
+      bindings:
+        welcomeMessage-in-0:
+          destination: mail
+          group: welcome
+          content-type: application/json
+          binder: rabbit
+        successfulRegistrationEmail-in-0:
+          destination: mail
+          group: registration
+          content-type: application/json
+          binder: rabbit
+        cancelledEvent-in-0:
+          destination: mail
+          group: cancellation
+          content-type: application/json
+          binder: rabbit
+      rabbit:
+        bindings:
+          welcomeMessage-in-0:
+            consumer:
+              bindingRoutingKey: welcome
+              autoBindDlq: true
+          successfulRegistrationEmail-in-0:
+            consumer:
+              bindingRoutingKey: registration
+              autoBindDlq: true
+          cancelledEvent-in-0:
+            consumer:
+              bindingRoutingKey: cancellation
+              autoBindDlq: true
+
+whatstheplan:
+  ui-url: ${UI_URL}
 
 management:
   endpoints:

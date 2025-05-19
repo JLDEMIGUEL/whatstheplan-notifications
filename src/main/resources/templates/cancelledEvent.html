@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Event Cancellation Notice</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #555555;
+            line-height: 1.4;
+        }
+
+        .event-details {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 500px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            background-color: #fafafa;
+            color: #444;
+        }
+
+        .event-details h2 {
+            color: #d32f2f;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .event-details p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            margin-top: 24px;
+            color: white !important;
+            background-color: #d32f2f;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #a02727;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #999999;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Dear <span th:text="${username}">User</span>,</h1>
+    <p>
+        We regret to inform you that the following event you registered for has been cancelled by the organizer.
+    </p>
+
+    <div class="event-details">
+        <h2 th:text="${event.title}">Event Title</h2>
+        <p><strong>Description:</strong> <span th:text="${event.description}">Event description here.</span></p>
+        <p>
+            <strong>Date & Time:</strong>
+            <span th:text="${#temporals.format(event.dateTime, 'dd MMM yyyy, HH:mm')}">01 Jan 2025, 18:00</span>
+        </p>
+        <p>
+            <strong>Duration:</strong>
+            <span th:text="${event.duration.toHours()}">2</span> hours
+        </p>
+        <p><strong>Location:</strong> <span th:text="${event.location}">Event location here</span></p>
+        <p><strong>Organizer:</strong> <span th:text="${event.organizerUsername}">Organizer Name</span></p>
+    </div>
+
+    <p>
+        We apologize for any inconvenience this may cause. Feel free to browse other events and join activities that
+        interest you.
+    </p>
+
+    <a th:href="${homeUrl}" class="btn" target="_blank" rel="noopener">
+        Go to WhatsThePlan Home
+    </a>
+
+    <p class="footer-text">
+        If you have any questions or need assistance, please contact our support team.
+    </p>
+</div>
+</body>
+</html>

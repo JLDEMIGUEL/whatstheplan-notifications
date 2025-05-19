@@ -4,3 +4,34 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: localhost
+  cloud:
+    function:
+      definition: welcomeMessage;successfulRegistrationEmail;cancelledEvent
+    stream:
+      bindings:
+        welcomeMessage-in-0:
+          destination: mail.welcomeMessage
+          content-type: application/json
+        successfulRegistrationEmail-in-0:
+          destination: mail.successfulRegistrationEmail
+          content-type: application/json
+        cancelledEvent-in-0:
+          destination: mail.cancelledEvent
+          content-type: application/json
+      rabbit:
+        bindings:
+          welcomeMessage-in-0:
+            consumer:
+              bindingRoutingKey: welcome
+              autoBindDlq: true
+          successfulRegistrationEmail-in-0:
+            consumer:
+              bindingRoutingKey: registration
+              autoBindDlq: true
+          cancelledEvent-in-0:
+            consumer:
+              bindingRoutingKey: cancellation
+              autoBindDlq: true
+
+whatstheplan:
+  ui-url: localhost

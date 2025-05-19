@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome to WhatsThePlan</title>
+    <style>
+        /* General reset and fallback */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 24px;
+            color: #555555;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #d32f2f;
+            color: white !important;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #a02727;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #999999;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to WhatsThePlan, <span th:text="${username}">User</span>!</h1>
+    <p>
+        We're thrilled to have you on board. Start discovering, creating, and joining events that bring people together.
+    </p>
+    <p>
+        Your registered email: <strong th:text="${email}">user@example.com</strong>
+    </p>
+    <a th:href="${homeUrl}" class="btn btn-primary" target="_blank" rel="noopener">
+        Go to WhatsThePlan
+    </a>
+    <p class="footer-text">
+        If you did not sign up for this account, please ignore this email.
+    </p>
+</div>
+</body>
+</html>
