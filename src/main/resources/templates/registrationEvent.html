@@ -66,7 +66,7 @@
             text-decoration: none;
             transition: background-color 0.3s ease;
             cursor: pointer;
-            margin-top: 24px;
+            margin-top: 0;
             color: white !important;
             background-color: #d32f2f;
             border: none;
@@ -105,9 +105,24 @@
         <p><strong>Organizer:</strong> <span th:text="${event.organizerUsername}">Organizer Name</span></p>
     </div>
 
-    <a th:href="${eventUrl}" class="btn" target="_blank" rel="noopener">
-        View Event Details
-    </a>
+    <div style="margin-top: 32px; text-align: center;">
+
+        <a th:href="${uiUrl + '/events/' + event.id}" class="btn" target="_blank" rel="noopener"
+           style="max-width: 300px; width: 100%; margin-bottom: 16px;">
+            View Event Details
+        </a>
+
+        <p style="font-size: 14px; color: #555; max-width: 400px; margin: 0 auto 12px;">
+            Once you have participated in the event, please rate the organizer here.
+        </p>
+
+        <a th:href="${uiUrl + '/review/' + event.id}" class="btn" target="_blank"
+           rel="noopener" style="max-width: 300px; width: 100%;">
+            Review the Organizer
+        </a>
+
+    </div>
+
 
     <p class="footer-text">
         If you did not register for this event, please ignore this email or contact support.

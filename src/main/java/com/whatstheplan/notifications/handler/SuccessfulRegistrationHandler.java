@@ -32,7 +32,7 @@ public class SuccessfulRegistrationHandler {
                 "username", request.getUsername(),
                 "email", request.getEmail(),
                 "event", request.getEvent(),
-                "eventUrl", uiUrl + "events/%s".formatted(request.getEvent().getId())
+                "uiUrl", uiUrl
         ));
         String emailText = templateEngine.process(EMAIL_TEMPLATE, context);
         mailService.sendEmail(request.getEmail(), EMAIl_SUBJECT.formatted(request.getEvent().getTitle()), emailText);

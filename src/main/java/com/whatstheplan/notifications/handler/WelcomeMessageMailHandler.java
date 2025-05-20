@@ -32,7 +32,7 @@ public class WelcomeMessageMailHandler {
         context.setVariables(Map.of(
                 "username", request.getUsername(),
                 "email", request.getEmail(),
-                "homeUrl", uiUrl
+                "uiUrl", uiUrl
         ));
         String emailText = templateEngine.process(EMAIL_TEMPLATE, context);
         mailService.sendEmail(request.getEmail(), EMAIl_SUBJECT.formatted(request.getUsername()), emailText);
