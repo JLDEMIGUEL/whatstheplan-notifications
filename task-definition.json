@@ -34,6 +34,10 @@
           "valueFrom": "arn:aws:ssm:eu-west-1:<AWS_ACCOUNT_ID>:parameter/whatstheplan/email/username"
         },
         {
+          "name": "EMAIL_PASSWORD",
+          "valueFrom": "arn:aws:ssm:eu-west-1:<AWS_ACCOUNT_ID>:parameter/whatstheplan/email/password"
+        },
+        {
           "name": "RABBITMQ_HOST",
           "valueFrom": "arn:aws:ssm:eu-west-1:<AWS_ACCOUNT_ID>:parameter/whatstheplan/rabbitmq/host"
         },
